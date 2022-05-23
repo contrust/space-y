@@ -3,4 +3,7 @@
 /workspace.xml
 # Editor-based HTTP Client requests
 /httpRequests/
+<<<<<<< HEAD
 .idea.*
+=======
+>>>>>>> 67289554463f5d5cbac12214992713b2e72fe9a4
