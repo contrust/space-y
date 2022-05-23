@@ -13,9 +13,9 @@ const app = express();
 https.createServer({
   key: fs.readFileSync("certs/server.key"),
   cert: fs.readFileSync("certs/server.cert"),
-}, app).listen(3001, function () {
+}, app).listen(port, function () {
   console.log(
-      "App listening on port 3001!"
+      "App listening on port 3000!"
   );
 });
 
@@ -35,8 +35,4 @@ app.get("/", (_, res) => {
 
 app.get('*', (req, res) => {
   res.sendfile("spa/build/index.html");
-});
-
-app.listen(port, () => {
-  console.log(`App listening on port ${port}`);
 });
