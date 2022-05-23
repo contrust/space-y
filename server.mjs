@@ -22,6 +22,10 @@ app.get("/", (_, res) => {
   res.send(":)");
 });
 
+app.get('*', (req, res) => {
+  res.sendfile("spa/build/index.html");
+});
+
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
 });
