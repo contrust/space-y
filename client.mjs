@@ -17,6 +17,7 @@ export class Client {
    * @return {Promise<string | null>} username
    * */
   async loginUser(username) {
+
     throw new Error("Not implemented");
   }
 

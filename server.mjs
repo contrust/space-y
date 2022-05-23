@@ -20,6 +20,8 @@ https.createServer({
 });
 
 app.use('/static', express.static('spa/build'));
+app.use(cookieParser());
+app.use(bodyParser.json());
 
 app.get("/client.mjs", (_, res) => {
   res.header("Cache-Control", "private, no-cache, no-store, must-revalidate");
@@ -33,6 +35,18 @@ app.get("/", (_, res) => {
   res.send(":)");
 });
 
+app.get("/api/getUser", (req, res) => {
+  res.json({"user": req.cookies.user || null});
+});
+
+app.get("/api/loginUser", (req, res) => {
+  res.cookie('user', req.body['user'], {httpOnly: true, secure: true, sameSite: 'strict'}).redirect('/api/getUser');
+});
+
+app.get("/api/logoutUser", (req, res) => {
+  res.clearCookie('user').redirect('/api/getUser');
+});
+
 app.get('*', (req, res) => {
-  res.sendfile("spa/build/index.html");
+  res.sendFile("spa/build/index.html");
 });
