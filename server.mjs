@@ -47,6 +47,7 @@ app.get("/api/logoutUser", (req, res) => {
   res.clearCookie('user').redirect('/api/getUser');
 });
 
-app.get('*', (req, res) => {
-  res.sendFile("spa/build/index.html");
+app.get('*', (req, res, next) => {
+  if (!req.cookies.user && req.url != '/login') res.redirect('/login');
+  else next();
 });
